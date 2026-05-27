@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EssaysIndexRouteImport } from './routes/essays.index'
 import { Route as WorkSlugRouteImport } from './routes/work.$slug'
+import { Route as EssaysSlugRouteImport } from './routes/essays.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,33 +29,42 @@ const WorkSlugRoute = WorkSlugRouteImport.update({
   path: '/work/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EssaysSlugRoute = EssaysSlugRouteImport.update({
+  id: '/essays/$slug',
+  path: '/essays/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/essays/$slug': typeof EssaysSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/essays/': typeof EssaysIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/essays/$slug': typeof EssaysSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/essays': typeof EssaysIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/essays/$slug': typeof EssaysSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/essays/': typeof EssaysIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/work/$slug' | '/essays/'
+  fullPaths: '/' | '/essays/$slug' | '/work/$slug' | '/essays/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/work/$slug' | '/essays'
-  id: '__root__' | '/' | '/work/$slug' | '/essays/'
+  to: '/' | '/essays/$slug' | '/work/$slug' | '/essays'
+  id: '__root__' | '/' | '/essays/$slug' | '/work/$slug' | '/essays/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EssaysSlugRoute: typeof EssaysSlugRoute
   WorkSlugRoute: typeof WorkSlugRoute
   EssaysIndexRoute: typeof EssaysIndexRoute
 }
@@ -82,11 +92,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/essays/$slug': {
+      id: '/essays/$slug'
+      path: '/essays/$slug'
+      fullPath: '/essays/$slug'
+      preLoaderRoute: typeof EssaysSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EssaysSlugRoute: EssaysSlugRoute,
   WorkSlugRoute: WorkSlugRoute,
   EssaysIndexRoute: EssaysIndexRoute,
 }
