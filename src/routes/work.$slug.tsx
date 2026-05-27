@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { projects } from "@/content/portfolio";
+import { projects, type Project } from "@/content/portfolio";
 import { Cover } from "@/components/portfolio/Cover";
 
 export const Route = createFileRoute("/work/$slug")({
@@ -71,7 +71,7 @@ function ProjectPage() {
       </div>
 
       <div className="mt-20 grid gap-16 md:grid-cols-[1fr_2fr]">
-        {project.sections.map((s) => (
+        {project.sections.map((s: Project["sections"][number]) => (
           <section key={s.heading} className="contents">
             <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
               {s.heading}
