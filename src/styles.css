@@ -62,26 +62,27 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --radius: 0.25rem;
+  /* Paper & Ink palette */
+  --background: oklch(0.972 0.008 85);        /* #f5f3ee paper */
+  --foreground: oklch(0.28 0.005 50);          /* #2d2d2d charcoal */
+  --card: oklch(0.945 0.01 80);                /* #e8e4dd soft paper */
+  --card-foreground: oklch(0.28 0.005 50);
+  --popover: oklch(0.972 0.008 85);
+  --popover-foreground: oklch(0.28 0.005 50);
+  --primary: oklch(0.16 0.005 50);             /* #0d0d0d ink */
+  --primary-foreground: oklch(0.972 0.008 85);
+  --secondary: oklch(0.945 0.01 80);
+  --secondary-foreground: oklch(0.16 0.005 50);
+  --muted: oklch(0.945 0.01 80);
+  --muted-foreground: oklch(0.5 0.005 50);
+  --accent: oklch(0.945 0.01 80);
+  --accent-foreground: oklch(0.16 0.005 50);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --destructive-foreground: oklch(0.972 0.008 85);
+  --border: oklch(0.88 0.01 80);
+  --input: oklch(0.88 0.01 80);
+  --ring: oklch(0.5 0.005 50);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +141,57 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
+
+  .font-display {
+    font-family: "Instrument Serif", ui-serif, Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  .prose-reader {
+    max-width: 65ch;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+  }
+
+  .prose-reader p { margin-bottom: 1.25em; }
+  .prose-reader h2 {
+    font-family: "Instrument Serif", serif;
+    font-size: 1.875rem;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    letter-spacing: -0.02em;
+  }
+  .prose-reader h3 {
+    font-family: "Instrument Serif", serif;
+    font-size: 1.375rem;
+    margin-top: 1.5em;
+    margin-bottom: 0.4em;
+  }
+  .prose-reader blockquote {
+    border-left: 2px solid var(--color-foreground);
+    padding-left: 1.25em;
+    font-style: italic;
+    margin: 1.5em 0;
+    color: var(--color-muted-foreground);
+  }
+  .prose-reader a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+
+  .hover-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 350ms ease;
+  }
+  .hover-underline:hover { background-size: 100% 1px; }
 }
