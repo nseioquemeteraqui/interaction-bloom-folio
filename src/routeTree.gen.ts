@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as CvRouteImport } from './routes/cv'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EssaysIndexRouteImport } from './routes/essays.index'
 import { Route as WorkSlugRouteImport } from './routes/work.$slug'
 import { Route as EssaysSlugRouteImport } from './routes/essays.$slug'
 
+const CvRoute = CvRouteImport.update({
+  id: '/cv',
+  path: '/cv',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -37,12 +43,14 @@ const EssaysSlugRoute = EssaysSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cv': typeof CvRoute
   '/essays/$slug': typeof EssaysSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/essays/': typeof EssaysIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cv': typeof CvRoute
   '/essays/$slug': typeof EssaysSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/essays': typeof EssaysIndexRoute
@@ -50,20 +58,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cv': typeof CvRoute
   '/essays/$slug': typeof EssaysSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/essays/': typeof EssaysIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/essays/$slug' | '/work/$slug' | '/essays/'
+  fullPaths: '/' | '/cv' | '/essays/$slug' | '/work/$slug' | '/essays/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/essays/$slug' | '/work/$slug' | '/essays'
-  id: '__root__' | '/' | '/essays/$slug' | '/work/$slug' | '/essays/'
+  to: '/' | '/cv' | '/essays/$slug' | '/work/$slug' | '/essays'
+  id: '__root__' | '/' | '/cv' | '/essays/$slug' | '/work/$slug' | '/essays/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CvRoute: typeof CvRoute
   EssaysSlugRoute: typeof EssaysSlugRoute
   WorkSlugRoute: typeof WorkSlugRoute
   EssaysIndexRoute: typeof EssaysIndexRoute
@@ -71,6 +81,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/cv': {
+      id: '/cv'
+      path: '/cv'
+      fullPath: '/cv'
+      preLoaderRoute: typeof CvRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -104,6 +121,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CvRoute: CvRoute,
   EssaysSlugRoute: EssaysSlugRoute,
   WorkSlugRoute: WorkSlugRoute,
   EssaysIndexRoute: EssaysIndexRoute,
