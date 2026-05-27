@@ -73,7 +73,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Your Name — Interaction Design Portfolio" },
+      { title: "test" },
       {
         name: "description",
         content:
@@ -82,6 +82,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "Your Name" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { property: "og:title", content: "test" },
+      { name: "twitter:title", content: "test" },
+      { name: "description", content: "My Design Canvas is a personal portfolio builder for designers to showcase their work." },
+      { property: "og:description", content: "My Design Canvas is a personal portfolio builder for designers to showcase their work." },
+      { name: "twitter:description", content: "My Design Canvas is a personal portfolio builder for designers to showcase their work." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/07e20625-e5ca-4959-ab76-cab26d450319/id-preview-fd39c639--20ffd888-4316-4a38-8c2f-e7b06a3c7a08.lovable.app-1779910752142.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/07e20625-e5ca-4959-ab76-cab26d450319/id-preview-fd39c639--20ffd888-4316-4a38-8c2f-e7b06a3c7a08.lovable.app-1779910752142.png" },
     ],
     links: [
       {
